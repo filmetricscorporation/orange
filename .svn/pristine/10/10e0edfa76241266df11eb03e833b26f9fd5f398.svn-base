@@ -1,0 +1,13 @@
+DROP TABLE IF EXISTS `ohrm_application_source`
+CREATE TABLE `ohrm_application_source` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO `ohrm_application_source` (`name`) VALUES ('Referral');
+INSERT INTO `ohrm_application_source` (`name`) VALUES ('Walk-In');
+INSERT INTO `ohrm_application_source` (`name`) VALUES ('Filmetrics-Careers');
+INSERT INTO `ohrm_application_source` (`name`) VALUES ('JobStreet');
+INSERT INTO `ohrm_application_source` (`name`) VALUES ('Kalibrr');
+INSERT INTO `ohrm_application_source` (`name`) VALUES ('JobsDB');

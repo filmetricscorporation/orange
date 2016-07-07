@@ -1,0 +1,8 @@
+<?php 
+$version = '1.0.0';
+$prodName = 'Filmetrics HRIS';
+$copyrightYear = date('Y');
+
+?>
+<?php echo $prodName . ' ' . $version;?><br/>
+&copy; 2011 - <?php echo $copyrightYear;?> <a href="http://www.filmetrics.com.ph" target="_blank">Filmetrics Corporation, Inc</a>. All rights reserved.

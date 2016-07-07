@@ -1,0 +1,27 @@
+Fri 26 Feb 2016 04:57:40 PM PHT,373 [16802] INFO core.email - ========== Message Begins ==========
+
+Time : February 26, 2016, 4:57 pm
+Message Type : Failure
+Message : Sending email failed to jcmanzano@filmetricscorp.com using smtp. Reason: Connection could not be established with host mail.filmetricscorp.com [ #0]
+
+========== Message Ends ==========
+
+
+Mon 29 Feb 2016 08:51:56 AM PHT,672 [19703] INFO core.email - ========== Message Begins ==========
+
+Time : February 29, 2016, 8:51 am
+Message Type : Failure
+Message : Sending email failed to jcmanzano@filmetricscorp.com using smtp. Reason: Connection could not be established with host mail.filmetricscorp.com [ #0]
+
+========== Message Ends ==========
+
+
+Wed 13 Apr 2016 08:42:42 AM PHT,584 [13262] INFO core.email - ========== Message Begins ==========
+
+Time : April 13, 2016, 8:42 am
+Message Type : Failure
+Message : Sending email failed to jcmanzano@filmetricscorp.com using smtp. Reason: Connection could not be established with host smtp.filmetricscorp.com [ #0]
+
+========== Message Ends ==========
+
+
