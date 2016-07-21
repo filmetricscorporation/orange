@@ -1,7 +1,7 @@
 <?php
 $imagePath = theme_path("images/login");
 ?>
-<div id="footer" >
+<div id="footer-login" >
     <div>
     <?php include_partial('global/copyright'); ?>
     </div>

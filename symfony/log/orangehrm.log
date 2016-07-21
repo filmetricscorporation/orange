@@ -6067,3 +6067,8 @@ Stack trace:
 [16-Jun-2016 09:13:02 Europe/Berlin] PHP Parse error:  syntax error, unexpected '"value"' (T_CONSTANT_ENCAPSED_STRING), expecting ')' in C:\xampp\htdocs\orange_svn\symfony\plugins\orangehrmAdminPlugin\modules\admin\templates\saveJobTitleSuccess.php on line 56
 [03-Jul-2016 15:49:05 Europe/Berlin] Empty module and/or action after parsing the URL "/webres_554af33274f2b9.68269152/orangehrmCorporateDirectoryPlugin/images/h1-bg.png" (/).
 [03-Jul-2016 15:49:15 Europe/Berlin] Empty module and/or action after parsing the URL "/webres_554af33274f2b9.68269152/orangehrmCorporateDirectoryPlugin/images/h1-bg.png" (/).
+07/10/16 02:45:57,592 [2324] WARN filter.ohrmAuthorizationFilter - User does not have access read access to leave - viewLeaveList
+07/19/16 15:32:03,598 [6512] WARN filter.ohrmAuthorizationFilter - User does not have access read access to leave - viewLeaveList
+07/19/16 15:33:30,209 [6512] WARN filter.ohrmAuthorizationFilter - User does not have access read access to leave - viewLeaveList
+07/19/16 15:39:41,576 [6512] WARN filter.ohrmAuthorizationFilter - User does not have access read access to leave - viewLeaveList
+[21-Jul-2016 13:29:26 Europe/Berlin] PHP Fatal error:  require(): Failed opening required 'C:/xampp/htdocs/orange_svn/symfony/plugins/orangehrmLeavePlugin/lib/event/LeaveEvents.php' (include_path='C:\xampp\php\PEAR') in C:\xampp\htdocs\orange\symfony\cache\orangehrm\prod\config\config_core_compile.yml.php on line 95

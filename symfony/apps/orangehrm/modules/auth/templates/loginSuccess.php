@@ -6,7 +6,7 @@ $imagePath = theme_path("images/login");
 
     body {
         background-color: #FFFFFF;
-        height: 700px;
+        /*height: 700px;*/
     }
 
     img {
