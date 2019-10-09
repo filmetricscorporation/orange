@@ -30,6 +30,7 @@ class EmployeeWorkShiftForm extends BaseForm {
     private $payGrades;
     private $currencies;
     private $payPeriods;
+    private $dayNames;
 
     /**
      * Get CurrencyService
@@ -51,6 +52,9 @@ class EmployeeWorkShiftForm extends BaseForm {
     }
 
     public function configure() {
+
+
+        var_dump("dito");
          $this->workshiftPermissions = $this->getOption('workshiftPermissions');
          
         $empNumber = $this->getOption('empNumber');
@@ -60,8 +64,9 @@ class EmployeeWorkShiftForm extends BaseForm {
         // 20160426
         $this->fullName = $employee->getFullName() . "|" . $employee->is_confidential;
 
-        $this->payGrades = $this->_getPayGrades();
-        $this->currencies = $this->_getCurrencies();
+        //$this->payGrades = $this->_getPayGrades();
+        $this->payGrades = $this->_getDayNames();
+        //$this->currencies = $this->_getCurrencies();
         $this->payPeriods = $this->_getPayPeriods();
 
         $widgets = array('emp_number' => new sfWidgetFormInputHidden(array(), array('value' => $empNumber)));
@@ -104,14 +109,18 @@ class EmployeeWorkShiftForm extends BaseForm {
         //creating widgets
         // Note: Widget names were kept from old non-symfony version
         $widgets['id'] = new sfWidgetFormInputHidden();
-        $widgets['workshift_id'] = new sfWidgetFormSelect(array('choices' => $this->currencies));
-        $widgets['dayperiod_code'] = new sfWidgetFormSelect(array('choices' => $this->payPeriods));
+        $widgets['currency_id'] = new sfWidgetFormSelect(array('choices' => $this->currencies));
+        $widgets['basic_workshift'] = new sfWidgetFormInputText();
+        $widgets['payperiod_code'] = new sfWidgetFormSelect(array('choices' => $this->payPeriods));
+        $widgets['workshift_component'] = new sfWidgetFormInputText();
+        $widgets['comments'] = new sfWidgetFormTextArea();
+        $widgets['set_direct_debit'] = new sfWidgetFormInputCheckbox(array(), array('value' => 'on'));
 
         if (count($this->payGrades) > 0) {
             $this->havePayGrades = true;
-            $widgets['work_shift_code'] = new sfWidgetFormSelect(array('choices' => $this->payGrades));
+            $widgets['sal_grd_code'] = new sfWidgetFormSelect(array('choices' => $this->payGrades));
         } else {
-            $widgets['work_shift_code'] = new sfWidgetFormInputHidden();
+            $widgets['sal_grd_code'] = new sfWidgetFormInputHidden();
         }
 
         // Remove default options from list validated against
@@ -130,19 +139,19 @@ class EmployeeWorkShiftForm extends BaseForm {
 
         $validators = array(
             'id' => new sfValidatorNumber(array('required' => false, 'min' => 0)),
-            'workshift_id' => new sfValidatorChoice(array('required' => true, 'choices' => array_keys($this->currencies))),
-            //'basic_workshift' => new sfValidatorNumber(array('required' => true, 'trim' => true, 'min' => 0, 'max' => 999999999.99)),
-            'dayperiod_code' => new sfValidatorChoice(array('required' => false, 'choices' => array_keys($this->payPeriods))),
-            //'workshift_component' => new sfValidatorString(array('required' => false, 'max_length' => 100)),
-            //'comments' => new sfValidatorString(array('required' => false, 'max_length' => 255)),
-            //'set_direct_debit' => new sfValidatorString(array('required' => false)),
+            'currency_id' => new sfValidatorChoice(array('required' => true, 'choices' => array_keys($this->currencies))),
+            'basic_workshift' => new sfValidatorNumber(array('required' => true, 'trim' => true, 'min' => 0, 'max' => 999999999.99)),
+            'payperiod_code' => new sfValidatorChoice(array('required' => false, 'choices' => array_keys($this->payPeriods))),
+            'workshift_component' => new sfValidatorString(array('required' => false, 'max_length' => 100)),
+            'comments' => new sfValidatorString(array('required' => false, 'max_length' => 255)),
+            'set_direct_debit' => new sfValidatorString(array('required' => false)),
         );
         
         if ($this->havePayGrades) {
-            $validator = array('work_shift_code' => new sfValidatorChoice(array('required' => false, 'choices' => array_keys($this->payGrades))));
+            $validator = array('sal_grd_code' => new sfValidatorChoice(array('required' => false, 'choices' => array_keys($this->payGrades))));
         } else {
             // We do not expect a value. Validate as an empty string
-            $validator = array('work_shift_code' => new sfValidatorString(array('required' => false, 'max_length' => 10)));
+            $validator = array('sal_grd_code' => new sfValidatorString(array('required' => false, 'max_length' => 10)));
         }
         
         $validators = array_merge($validators, $validator);
@@ -232,22 +241,58 @@ class EmployeeWorkShiftForm extends BaseForm {
         return $empWorkShift;
     }
 
-    private function _getPayGrades() {
+    /*private function _getPayGrades() {
         $choices = array();
 
-        $service = new WorkShiftService();
-        $payGrades = $service->getWorkShiftList();
+        $service = new PayGradeService();
+        $payGrades = $service->getPayGradeList();
 
         if (count($payGrades) > 0) {
             $choices = array('' => '-- ' . __('Select') . ' --');
 
             foreach ($payGrades as $payGrade) {
-                //$choices[$payGrade->getId()] = $payGrade->getName() . "   [" . $payGrade->getStartTime() . " - " . $payGrade->getStartTime() . "]";
-                //$choices[$payGrade->getId()] = $payGrade->getName(); echo "test";
+                $choices[$payGrade->getId()] = $payGrade->getName();
+            }
+        }
+        return $choices;
+    }*/
+
+     private function _getDayNames() {
+        $choices = array();
+
+        $service = new DayNameService();
+        $dayNames = $service->getDayNameList();
+
+        if (count($dayNames) > 0) {
+            $choices = array('' => '-- ' . __('Select') . ' --');
+
+            foreach ($dayNames as $dayName) {
+                $choices[$dayName->getDayName()] = $dayName->getDayName();
             }
         }
         return $choices;
     }
+
+
+     /**
+     * Get Work Shift as array.
+     * 
+     * @return Array (empty array if no work shift defined).
+     */
+    private function _getWorkShifts() {
+        $workShifts = Doctrine::getTable('Workshift')->findAll();
+
+        foreach ($workShifts as $workShift) {
+            $choices[$workShift->getId()] = $workShift->getName();
+        }
+
+        asort($choices);
+
+        $choices = array('' => '-- ' . __('Select') . ' --') + $choices;
+
+        return $choices;
+    }
+
 
     /**
      * Get Pay Periods as array.
@@ -255,22 +300,20 @@ class EmployeeWorkShiftForm extends BaseForm {
      * @return Array (empty array if no pay periods defined).
      */
     private function _getPayPeriods() {
-        //$payPeriods = Doctrine::getTable('Payperiod')->findAll();
+        $payPeriods = Doctrine::getTable('Payperiod')->findAll();
 
-        //foreach ($payPeriods as $payPeriod) {
-        //    $choices[$payPeriod->getCode()] = $payPeriod->getName();
-        //}
+        foreach ($payPeriods as $payPeriod) {
+            $choices[$payPeriod->getCode()] = $payPeriod->getName();
+        }
 
-        //asort($choices);
+        asort($choices);
 
-        //$choices = array('' => '-- ' . __('Select') . ' --') + $choices;
-        $i18nHelper = sfContext::getInstance()->getI18N();
-        $choices = array('' => "-- " . __('Select') . " --", 'Monday'=> $i18nHelper->__('Monday'), 'Tuesday'=> $i18nHelper->__('Tuesday'), 'Wednesday'=> $i18nHelper->__('Wednesday'), 'Thursday'=> $i18nHelper->__('Thursday'), 'Friday'=> $i18nHelper->__('Friday'), 'Saturday'=> $i18nHelper->__('Saturday'), 'Sunday'=> $i18nHelper->__('Sunday'));
+        $choices = array('' => '-- ' . __('Select') . ' --') + $choices;
 
         return $choices;
     }
 
-    private function _getCurrencies() {
+    /*private function _getCurrencies() {
         $currencies = $this->getCurrencyService()->getCurrencyList();
         $choices = array('' => '-- ' . __('Select') . ' --');
 
@@ -278,7 +321,8 @@ class EmployeeWorkShiftForm extends BaseForm {
             $choices[$currency->getCurrencyId()] = $currency->getCurrencyName();
         }
         return $choices;
-    }
+    }*/
+
 
 }
 

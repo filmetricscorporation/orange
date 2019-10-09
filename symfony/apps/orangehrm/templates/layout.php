@@ -48,7 +48,7 @@ $cultureElements = explode('_', $sf_user->getCulture());
         <div id="wrapper">
 
             <div id="branding">
-                <img src="<?php echo public_path('../../symfony/web/themes/default/images/filmetrics_logo.png')?>" width="330" height="70" alt="OrangeHRM">
+                <img src="<?php echo public_path('../../symfony/web/themes/default/images/header_logo.png')?>" width="230" height="80" alt="OrangeHRM">
                 <a href="#" class="subscribe">Join OrangeHRM Community</a>
                 <a href="#" id="welcome"><?php echo __('Welcome') . ' ' . $sf_user->getAttribute('auth.firstName'); ?></a>
                 <div id="welcome-menu">

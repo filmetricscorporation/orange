@@ -150,6 +150,7 @@ class defineHolidayAction extends baseLeaveAction {
                         $holidayObject->setRecurring($recurringValue);
 
                         $holidayObject->setLength($post['length']);
+                        $holidayObject->setHolidayTypeId($post['type']);
                         $this->getHolidayService()->saveHoliday($holidayObject);                        
 
                         if ($post['id'] != '') {

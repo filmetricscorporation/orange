@@ -82,14 +82,20 @@
                         <li>
                             <?php echo $form['location']->renderLabel(__('Location')); ?>
                             <?php echo $form['location']->render(array("class" => "formSelect")); ?>
-                        </li>
-                         
+                        </li>                                                 
                         <?php // 20160318 - add approval_signatory from ohrm_job_title ?>
-                        <li>
-                            <?php echo $form['approval_signatory']->renderLabel(__('No. of Signatories')); ?>
-                            <?php echo $form['approval_signatory']->render(array("maxlength" => 2)); ?>
+                        <!--li>
+                            <!--?php echo $form['approval_signatory']->renderLabel(__('No. of Signatories')); ?>
+                            <!--?php echo $form['approval_signatory']->render(array("maxlength" => 2)); ?>
+                        </li-->                        
+                        <!--li>
+                            <?php //echo $form['is_mobile']->renderLabel(__('Is Mobile?')); ?>
+                            <?php //echo $form['is_mobile']->render(array("class" => "formSelect")); ?>
                         </li>
-
+                         <li>
+                            <?php //echo $form['is_dco']->renderLabel(__('Is DCO?')); ?>
+                            <?php //echo $form['is_dco']->render(array("class" => "formSelect")); ?>
+                        </li-->
                         <li>
                             <h2><?php echo __('Employment Contract'); ?></h2>
                         </li>
@@ -365,7 +371,9 @@
         '#contract_file', 'ul.radio_list input',
         '#job_contract_start_date', '#job_contract_end_date',
         '#job_contract_file',
-        '#job_approval_signatory');
+        '#job_approval_signatory',
+        '#job_is_mobile',
+        '#job_is_dco');
         for(i=0; i < list.length; i++) {
             $(list[i]).attr("disabled", "disabled");
         }

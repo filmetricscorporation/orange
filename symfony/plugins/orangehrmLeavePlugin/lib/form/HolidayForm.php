@@ -95,6 +95,12 @@ class HolidayForm extends sfForm {
         return $fullDaysLengthList;
     }
 
+    public function getTypeList() {
+        $holidayTypeList = WorkWeek::getTypeList();
+        unset($holidayTypeList[8]);
+        return $holidayTypeList;
+    }
+
     /**
      * Set the default values for sfWidgetForm Elements
      * @param integer $holidayId
@@ -112,6 +118,7 @@ class HolidayForm extends sfForm {
             $this->setDefault('date', set_datepicker_date_format($holidayObject->getDate()));
             $this->setDefault('recurring', $chkRecurring);
             $this->setDefault('length', $holidayObject->getLength());
+            $this->setDefault('type', $holidayObject->getHolidayTypeId());
         }
     }
 
@@ -167,6 +174,11 @@ class HolidayForm extends sfForm {
                         ), array(
                     'add_empty' => false
                 ));
+        $widgets['type'] = new sfWidgetFormSelect(array(
+                    'choices' => $this->getTypeList(),
+                        ), array(
+                    'add_empty' => false
+                ));
 
         return $widgets;
     }
@@ -197,6 +209,8 @@ class HolidayForm extends sfForm {
                     'bad_format' => __(ValidationMessages::DATE_FORMAT_INVALID, array('%format%' => get_datepicker_date_format(sfContext::getInstance()->getUser()->getDateFormat())))
                 ));
         $validators['length'] = new sfValidatorChoice(array('choices' => array_keys($this->getDaysLengthList())));
+        $validators['type'] = new sfValidatorChoice(array('choices' => array_keys($this->getTypeList())));
+
 
         return $validators;
     }
@@ -217,7 +231,7 @@ class HolidayForm extends sfForm {
         $labels['date'] = __('Date') . ' ' . $requiredLabel;
         $labels['recurring'] = __('Repeats Annually');
         $labels['length'] = __('Full Day/Half Day');
-        $labels['type'] = __('Full Day/Half Day');
+        $labels['type'] = __('Holiday Type');
 
         return $labels;
     }

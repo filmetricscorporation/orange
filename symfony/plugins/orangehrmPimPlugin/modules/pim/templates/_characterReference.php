@@ -29,11 +29,11 @@ $haveCharacterReferences = count($form->empCharacterReferenceList)>0;
                         <?php echo $form['company']->render(array("class" => "formInputText", "maxlength" => 100)); ?>
                     </li>
                     <li>
-                        <?php echo $form['position']->renderLabel(__('Position')); ?>
+                        <?php echo $form['position']->renderLabel(__('Position') . ' <em>*</em>'); ?>
                         <?php echo $form['position']->render(array("class" => "formInputText", "maxlength" => 50)); ?>
                     </li>
                     <li>
-                        <?php echo $form['contact_number']->renderLabel(__('Contact Number')); ?>
+                        <?php echo $form['contact_number']->renderLabel(__('Contact Number') . ' <em>*</em>'); ?>
                         <?php echo $form['contact_number']->render(array("class" => "formInputText", "maxlength" => 30)); ?>
                     </li>
                     <li class="required">
@@ -104,7 +104,7 @@ $haveCharacterReferences = count($form->empCharacterReferenceList)>0;
                         $cssClass = ($row % 2) ? 'even' : 'odd';
                         //$characterReferenceName = $characterReference->getCharacterReference()->getName();
                         
-                        var_dump($characterReference->contact_number . "|" . $characterReference->seqno);
+                        //var_dump($characterReference->contact_number . "|" . $characterReference->seqno);
 
                         ?>
                         <tr class="<?php echo $cssClass; ?>">

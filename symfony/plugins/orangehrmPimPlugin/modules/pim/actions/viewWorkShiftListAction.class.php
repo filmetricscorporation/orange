@@ -25,8 +25,6 @@ class viewWorkShiftListAction extends basePimAction {
 
     public function execute($request) {
 
-        var_dump("here");
-
         $loggedInEmpNum = $this->getUser()->getEmployeeNumber();
         $loggedInUserName = $_SESSION['fname'];
 
@@ -38,6 +36,8 @@ class viewWorkShiftListAction extends basePimAction {
         $this->ownRecords = ($loggedInEmpNum == $empNumber) ? true : false;
 
         $this->workshiftPermissions = $this->getDataGroupPermissions('workshift_details', $empNumber);
+
+        //var_dump($this->workshiftPermissions);
 
         $adminMode = $this->getUser()->hasCredential(Auth::ADMIN_ROLE);
         $this->isSupervisor = $this->isSupervisor($loggedInEmpNum, $empNumber);
@@ -56,6 +56,7 @@ class viewWorkShiftListAction extends basePimAction {
             'workshiftPermissions' => $this->workshiftPermissions);
 
         $this->form = new EmployeeWorkShiftForm(array(), $params, true);
+
 
         // TODO: Use embedForm or mergeForm?
         $this->directDepositForm = new EmployeeDirectDepositForm(array(), array(), true);
@@ -99,7 +100,7 @@ class viewWorkShiftListAction extends basePimAction {
 
                     if ($directDebitOk) {
                         $service = $this->getEmployeeService();
-                        $this->setOperationName('UPDATE workshift');
+                        $this->setOperationName('UPDATE SALARY');
                         $service->saveEmployeeWorkShift($workshift);                
 
                         $this->getUser()->setFlash('workshift.success', __(TopLevelMessages::SAVE_SUCCESS));  
@@ -118,7 +119,7 @@ class viewWorkShiftListAction extends basePimAction {
             $this->redirect('pim/viewWorkShiftList?empNumber=' . $empNumber);  
         } else {
             if ($this->workshiftPermissions->canRead()) {
-                $this->workshiftList = $this->getEmployeeService()->getEmployeeWorkShifts($empNumber);
+                $this->workshiftList = $this->getEmployeeService()->getEmployeeSalaries($empNumber);
             }
         }
         $this->listForm = new DefaultListForm();

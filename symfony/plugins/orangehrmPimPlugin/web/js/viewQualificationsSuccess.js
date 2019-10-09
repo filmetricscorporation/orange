@@ -74,7 +74,7 @@ $(document).ready(function() {
         $("#experience_comments").val("");
         $("#experience_superior").val("");
         $("#experience_address").val("");
-        $("#experience_salary").val("");
+        $("#experience_salary").val("0.00");
         $("#experience_contactno").val("");
 
         //show add work experience form
@@ -233,8 +233,13 @@ $(document).ready(function() {
         $("#workCheckAll").hide();
     });
 
-    $('#experience_salary').keyup(function(event) {
+     $('#experience_salary').keyup(function(event) {
         this.value = this.value.replace(/[^0-9\.]/g,'');
+
+        if ($('#experience_salary').val() == "") {
+            $('#experience_salary').val("0.00");
+        }
+
     });
 
 });

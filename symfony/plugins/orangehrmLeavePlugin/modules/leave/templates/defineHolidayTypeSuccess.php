@@ -14,7 +14,7 @@
     </div>
     <div class="inner">
         <?php include_partial('global/flash_messages'); ?>
-        <form id="frmHolidayType" name="frmHolidayType" method="post" action="<?php echo url_for('holiday/defineHolidayType'); ?>">
+        <form id="frmHolidayType" name="frmHolidayType" method="post" action="<?php echo url_for('leave/defineHolidayType'); ?>">
 
             <fieldset>                
                     <ol>
@@ -103,7 +103,7 @@
     var lang_HolidayTypeExists = '<?php echo __(ValidationMessages::ALREADY_EXISTS); ?>';
     var lang_HolidayTypeNameTooLong = '<?php echo __(ValidationMessages::TEXT_LENGTH_EXCEEDS, array('%amount%' => 50)); ?>'; 
     
-    var backButtonUrl = '<?php echo url_for('holiday/holidayTypeList'); ?>';
+    var backButtonUrl = '<?php echo url_for('leave/holidayTypeList'); ?>';
 
     //]]>
 </script>

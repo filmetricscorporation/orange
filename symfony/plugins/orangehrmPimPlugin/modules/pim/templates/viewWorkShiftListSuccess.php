@@ -6,7 +6,7 @@
     <?php if ($workshiftPermissions->canCreate() || (count($workshiftList) > 0 && $workshiftPermissions->canUpdate())) { ?>
     <div id="changeWorkShift">
         <div class="head">
-            <h1 id="headchangeWorkShift"><?php echo __('Add WorkShift Component'); ?></h1>
+            <h1 id="headchangeWorkShift"><?php echo __('Add WorkShift'); ?></h1>
         </div>
         
         <div class="inner">
@@ -17,27 +17,71 @@
                     <?php echo $form['emp_number']->render(); ?>
                     <ol>
                         <li>
-                            <?php echo $form['work_shift_code']->renderLabel(__('Work Shift') . ' <em>*</em>'); ?>
+                            <?php echo $form['sal_grd_code']->renderLabel(__('Day')); ?>
                             <?php
                             if ($form->havePayGrades) {
-                                echo $form['work_shift_code']->render(array("class" => "formSelect"));
+                                echo $form['sal_grd_code']->render(array("class" => "formSelect"));
                             } else {
-                                echo $form['work_shift_code']->render();
+                                echo $form['sal_grd_code']->render();
                             ?>
-                                <label id="noWorkShiftGrade" for="work_shift_code"><?php echo __("Not Defined"); ?></label>
+                                <label id="noWorkShiftGrade" for="sal_grd_code"><?php echo __("Not Defined"); ?></label>
                             <?php } ?>
                         </li>
                         <li>
-                            <?php echo $form['dayperiod_code']->renderLabel(__('Day') . ' <em>*</em>'); ?>
-                            <?php echo $form['dayperiod_code']->render(array("class" => "formSelect")); ?>
+                            <?php echo $form['workshift_component']->renderLabel(__('WorkShift Component') . ' <em>*</em>'); ?>
+                            <?php echo $form['workshift_component']->render(array("class" => "formInputText", "maxlength" => 100)); ?>
+                        </li>
+                        <li>
+                            <?php echo $form['payperiod_code']->renderLabel(__('Pay Frequency')); ?>
+                            <?php echo $form['payperiod_code']->render(array("class" => "formSelect")); ?>
+                        </li>
+                        <li>
+                            <?php echo $form['currency_id']->renderLabel(__('Currency') . ' <em>*</em>'); ?>
+                            <?php echo $form['currency_id']->render(array("class" => "formSelect")); ?>
                         </li>
                         <li>
                             <input name="" disabled="disabled" id="minWorkShift" type="hidden" value=""/>
-                            <input name="" disabled="disabled" id="maxWorkShift" type="hidden" value=""/>                            
-                            <label for="minWorkShift" id="minMaxSalaryLbl" class="fieldHelpRight"></label>
+                            <input name="" disabled="disabled" id="maxWorkShift" type="hidden" value=""/>
+                            <?php echo $form['basic_workshift']->renderLabel(__('Amount') . ' <em>*</em>'); ?>
+                            <?php echo $form['basic_workshift']->render(array("class" => "formInputText", "maxlength" => 12)); ?>
+                            <label for="minWorkShift" id="minMaxWorkShiftLbl" class="fieldHelpRight"></label>
                         </li>
-                      
+                        <li class="largeTextBox">
+                            <?php echo $form['comments']->renderLabel(__('Comments')); ?>
+                            <?php echo $form['comments']->render(array("class" => "formInputText")); ?>
+                        </li>
+                        <li>
+                            <?php echo $form['set_direct_debit']->renderLabel(__('Add Direct Deposit Details'), array('id' => 'set_direct_debit_label')); ?>
+                            <?php echo $form['set_direct_debit']->render(); ?>
+                        </li>
                         <li class="required" id="notDirectDebitSection">
+                            <em>*</em> <?php echo __(CommonMessages::REQUIRED_FIELD); ?>
+                        </li>
+                    </ol>
+                    <ol id="directDebitSection">
+                        <?php echo $directDepositForm['_csrf_token']; ?>
+                        <?php echo $directDepositForm['id']->render(); ?>
+                        <li>
+                            <?php echo $directDepositForm['account']->renderLabel(__('Account Number') . ' <em>*</em>'); ?>
+                            <?php echo $directDepositForm['account']->render(array("class" => "formInputText", "maxlength" => 100)); ?>
+                        </li>
+                        <li>
+                            <?php echo $directDepositForm['account_type']->renderLabel(__('Account Type') . ' <em>*</em>'); ?>
+                            <?php echo $directDepositForm['account_type']->render(array("class" => "formSelect")); ?>
+                        </li>
+                        <li id="accountTypeOther">
+                            <?php echo $directDepositForm['account_type_other']->renderLabel(__('Please Specify') . ' <em>*</em>');?>
+                            <?php echo $directDepositForm['account_type_other']->render(array("class" => "formInputText", "maxlength" => 20)); ?>
+                        </li>
+                        <li> 
+                            <?php echo $directDepositForm['routing_num']->renderLabel(__('Routing Number') . ' <em>*</em>'); ?>
+                            <?php echo $directDepositForm['routing_num']->render(array("class" => "formInputText", "maxlength" => 9)); ?>
+                        </li>
+                        <li>
+                            <?php echo $directDepositForm['amount']->renderLabel(__('Amount') . ' <em>*</em>'); ?>
+                            <?php echo $directDepositForm['amount']->render(array("class" => "formInputText", "maxlength" => 12)); ?>
+                        </li>
+                        <li class="required">
                             <em>*</em> <?php echo __(CommonMessages::REQUIRED_FIELD); ?>
                         </li>
                     </ol>
@@ -84,15 +128,13 @@
                             <th class="check" style="width:2%"><input type="checkbox" id="workshiftCheckAll" /></th>
                             <?php } ?>
                             <th class="component"><?php echo __('Day'); ?></th>
-                            <th class="payperiod"><?php echo __('Work Shift Name'); ?></th>
-                            <th class="currency"><?php echo __('Start Time'); ?></th>
-                            <th class="amount"><?php echo __('End Time'); ?></th>
+                            <th class="payperiod"><?php echo __('Start Time'); ?></th>
+                            <th class="currency"><?php echo __('End Time'); ?></th>
+                            <th class="amount"><?php echo __('Break'); ?></th>                
                         </tr>
                     </thead>
                     <tbody>
                         <?php
-                        var_dump($workshiftList);
-
                         if (!(count($workshiftList) > 0)) { ?>
                         <tr>
                             <td><?php echo __(TopLevelMessages::NO_RECORDS_FOUND); ?></td>
@@ -209,7 +251,7 @@
     
     <?php 
     echo include_component('pim', 'customFields', array('empNumber' => $empNumber, 'screen' => CustomField::SCREEN_SALARY));
-    //echo include_component('pim', 'attachments', array('empNumber' => $empNumber, 'screen' => EmployeeAttachment::SCREEN_SALARY)); 
+    echo include_component('pim', 'attachments', array('empNumber' => $empNumber, 'screen' => EmployeeAttachment::SCREEN_SALARY)); 
     ?>
 </div> <!-- Box -->
 
@@ -218,8 +260,8 @@
 
     var canUpdate = '<?php echo $workshiftPermissions->canUpdate(); ?>';
     var fileModified = 0;
-    var lang_addWorkShift = "<?php echo __('Add Work Shift'); ?>";
-    var lang_editWorkShift = "<?php echo __('Edit Work Shift'); ?>";
+    var lang_addWorkShift = "<?php echo __('Add WorkShift Component'); ?>";
+    var lang_editWorkShift = "<?php echo __('Edit WorkShift Component'); ?>";
     var lang_payPeriodRequired = "<?php echo __(ValidationMessages::REQUIRED); ?>";
     var lang_currencyRequired = "<?php echo __(ValidationMessages::REQUIRED); ?>";
     var lang_componentRequired = "<?php echo __(ValidationMessages::REQUIRED); ?>";
@@ -657,12 +699,6 @@
         }
         getMinMax(workshiftGrade, currencyCode);
     });
-
-    //$("#workshift_work_shift_code").click(function(){
-    //    alert("test");
-    //});
-
-
 });
 //]]>
 </script>

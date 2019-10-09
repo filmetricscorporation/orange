@@ -17,6 +17,8 @@
  * @property integer $modified_user_id
  * @property integer $created_by
  * @property integer $allowAccessConfidential
+ * @property integer $hrSummary
+ * @property integer $isEnableEmpauthentication
  * @property Employee $Employee
  * @property UserRole $UserRole
  * @property Doctrine_Collection $Login
@@ -38,8 +40,10 @@
  * @method timestamp           getDateEntered()           Returns the current record's "date_entered" value
  * @method timestamp           getDateModified()          Returns the current record's "date_modified" value
  * @method integer             getModifiedUserId()        Returns the current record's "modified_user_id" value
- * @method integer             getCreatedBy()             Returns the current record's "created_by" value
- * @method integer             getAllowAccessconfidential() Returns the current record's "allow_access_confidential" value
+ * @method integer             getCreatedBy()                   Returns the current record's "created_by" value
+ * @method integer             getAllowAccessconfidential()     Returns the current record's "allow_access_confidential" value
+ * @method integer             getHrSummary()                   Returns the current record's "hr_summary" value
+ * @method integer             getIsEnableEmpauthentication()   Returns the current record's "isenableempauthentication" value
  * @method Employee            getEmployee()              Returns the current record's "Employee" value
  * @method UserRole            getUserRole()              Returns the current record's "UserRole" value
  * @method Doctrine_Collection getLogin()                 Returns the current record's "Login" collection
@@ -61,7 +65,9 @@
  * @method SystemUser          setDateModified()          Sets the current record's "date_modified" value
  * @method SystemUser          setModifiedUserId()        Sets the current record's "modified_user_id" value
  * @method SystemUser          setCreatedBy()             Sets the current record's "created_by" value
- * @method SystemUser          setAllowAccessConfidential() Sets the current record's "allow_access_confidential" value
+ * @method SystemUser          setAllowAccessConfidential()     Sets the current record's "allow_access_confidential" value
+ * @method SystemUser          setHrSummary()                   Sets the current record's "hr_summary" value
+ * @method SystemUser          setIsEnableEmpauthentication()   Sets the current record's "isenableempauthentication" value
  * @method SystemUser          setEmployee()              Sets the current record's "Employee" value
  * @method SystemUser          setUserRole()              Sets the current record's "UserRole" value
  * @method SystemUser          setLogin()                 Sets the current record's "Login" collection
@@ -132,6 +138,14 @@ abstract class BaseSystemUser extends sfDoctrineRecord
              ));
         $this->hasColumn('allow_access_confidential', 'integer', 1, array(
              'type' => 'string',
+             'length' => 1,
+             ));
+         $this->hasColumn('hr_summary', 'integer', 11, array(
+             'type' => 'integer',
+             'length' => 11,
+             ));
+        $this->hasColumn('isenableempauthentication', 'bit', 1, array(
+             'type' => 'bit',
              'length' => 1,
              ));
     }

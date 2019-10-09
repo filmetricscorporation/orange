@@ -30,7 +30,7 @@ class deleteHolidayTypeAction extends baseHolidayAction {
                     }
                 }
 
-                $this->redirect('holiday/holidayTypeList');
+                $this->redirect('leave/holidayTypeList');
             }
         }
 

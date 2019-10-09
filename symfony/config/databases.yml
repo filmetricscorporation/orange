@@ -13,3 +13,20 @@ test:
       dsn: 'mysql:host=localhost;port=3306;dbname=test_hrisdb'
       username: root
       password: 
+
+
+#all:
+#  doctrine:
+#    class: sfDoctrineDatabase
+#    param:
+#      dsn: 'mysql:host=localhost;port=3306;dbname=orangehrm332'
+#      username: orangehrm
+#      password: 123132
+#      attributes: { export: tables }
+#test:
+#  doctrine:
+#    class: sfDoctrineDatabase
+#    param:
+#      dsn: 'mysql:host=localhost;port=3306;dbname=test_orangehrm332'
+#      username: orangehrm
+#      password: 123132

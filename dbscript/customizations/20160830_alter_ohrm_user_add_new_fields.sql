@@ -1,0 +1,2 @@
+ALTER TABLE `ohrm_user` ADD COLUMN `hr_summary` int(11) NOT NULL DEFAULT 0 AFTER `user_role_asp`;
+ALTER TABLE `ohrm_user` ADD COLUMN `isenableempauthentication` tinyint(1) NOT NULL DEFAULT 0 AFTER `hr_summary`;

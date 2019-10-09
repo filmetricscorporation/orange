@@ -66,6 +66,9 @@ class EmployeeJobDetailsForm extends BaseForm {
         $subDivisions = $this->_getSubDivisions();
         $locations = $this->_getLocations($employee);
 
+        $isMobile = $this->_getIsMobile();
+        $isDco = $this->_getIsDco();
+
         $empService = new EmployeeService();
 
         $attachmentList = $empService->getEmployeeAttachments($empNumber, 'contract');
@@ -92,6 +95,8 @@ class EmployeeJobDetailsForm extends BaseForm {
             
             // 20160318 - add approval_signatory
             'approval_signatory' => new sfWidgetFormInputText(),
+            //'is_mobile' => new sfWidgetFormSelect(array('choices' => $isMobile)),
+            //'is_dco' => new sfWidgetFormSelect(array('choices' => $isDco)),
             
             'joined_date' => new ohrmWidgetDatePicker(array(), array('id' => 'job_joined_date')),
             'contract_start_date' => new ohrmWidgetDatePicker(array(), array('id' => 'job_contract_start_date')),
@@ -162,6 +167,8 @@ class EmployeeJobDetailsForm extends BaseForm {
 
             // 20160318 - approval_signatory
             'approval_signatory' => new sfValidatorString(array('required' => false)),
+            //'is_mobile' => new sfValidatorChoice(array('required' => false, 'choices' => array_keys($jobTitles))),
+            //'is_dco' => new sfValidatorChoice(array('required' => false, 'choices' => array_keys($jobTitles))),
             
             'joined_date' => new ohrmDateValidator(
                     array('date_format' => $inputDatePattern, 'required' => false),
@@ -229,6 +236,14 @@ class EmployeeJobDetailsForm extends BaseForm {
         } else {
             $employee->approval_signatory = $empApprovalSignatory;
         }
+
+        /*$empIsMobile = $this->getValue('is_mobile');
+        if ($empIsMobile == '') {
+            $employee->is_mobile = 0;
+        } else {
+            $employee->is_mobile = $empIsMobile;
+        }
+        */
 
         $eeoCat = $this->getValue('eeo_category');
         if ($eeoCat == '') {
@@ -444,6 +459,22 @@ class EmployeeJobDetailsForm extends BaseForm {
     
     public function getIsJoinDateChanged(){
         return $this->isJoinDateChanged;
+    }
+
+    private function _getIsMobile() {
+        $list = array();
+        $list[0] = __("No");
+        $list[1] = __("Yes");
+
+        return $list;
+    }
+
+    private function _getIsDco() {
+        $list = array();
+        $list[0] = __("No");
+        $list[1] = __("Yes");
+
+        return $list;
     }
 
 }

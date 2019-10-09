@@ -28,7 +28,7 @@ class Conf {
 
 	var $emailConfiguration;
 	var $logPath;
-
+	
 	function Conf() {
 
 		$this->dbhost	= 'localhost';
@@ -42,6 +42,21 @@ class Conf {
 		$this->logPath =  realpath(dirname(__FILE__).'/../logs/').'/';
 
 	}
+	/*
+	function Conf() {
+
+		$this->dbhost	= 'localhost';
+		$this->dbport 	= '3306';
+		$this->dbname	= 'orangehrm332';
+		$this->dbuser	= 'orangehrm';
+		$this->dbpass	= '123132';
+		$this->smtphost = 'localhost';
+		$this->version = '3.3.1';
+		$this->emailConfiguration = dirname(__FILE__).'mailConf.php';
+		$this->logPath =  realpath(dirname(__FILE__).'/../logs/').'/';
+
+	}
+	*/
 }
 
 ?>

@@ -32,7 +32,7 @@ HolidayList:
   assets:
   jsInitMethods: []  
   
-HoliddayTypeList:
+HolidayTypeList:
   pluginName: orangehrmLeavePlugin
   hasSelectableRows: true
   unselectableRowIds: []

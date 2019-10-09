@@ -224,6 +224,8 @@ class SystemUserForm extends BaseForm {
             'status' => __('Status') . $required,
             'chkChangePassword' => __('Change Password'),
             'allowAccessConfidential' => __('Access Confidential Records'),
+            'hrSummary' => __('Access Consolidation Summary'),
+            'isEnableEmpAuthentication' => __('Allow DTRS Username/Password'),
         );
 
         return $labels;

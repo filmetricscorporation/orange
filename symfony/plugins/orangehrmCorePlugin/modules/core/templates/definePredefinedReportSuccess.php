@@ -82,6 +82,8 @@ use_javascript('orangehrm.datepicker.js');
                 
                 foreach ($form->selectedFilterWidgets as $filterName => $label) {
     
+                    var_dump($label);
+
                     if (!in_array($filterName, $requiredFilterNames)) {
                     
                         $formField = $form[$filterName];

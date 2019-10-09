@@ -56,7 +56,7 @@ class saveDeleteCharacterReferenceAction extends basePimAction {
                         $this->getEmployeeService()->saveEmployeeCharacterReference($characterReference);
                         $this->getUser()->setFlash('workexperience.success', __(TopLevelMessages::SAVE_SUCCESS));
                     } else {
-                        $this->getUser()->setFlash('workexperience.warning', __('Form Validation Failed.'));
+                       $this->getUser()->setFlash('workexperience.warning', __('Form Validation Failed.'));
                     }
                 }
             }
@@ -84,7 +84,7 @@ class saveDeleteCharacterReferenceAction extends basePimAction {
 
         $post = $form->getValues();
 
-        $characterReference = $this->getEmployeeService()->getEmployeeCharacterReferenceRecords($post['emp_number'], $post['seqno']);
+        $characterReference = $this->getEmployeeService()->getEmployeeCharacterReferences($post['emp_number'], $post['seqno']);
 
         if (!$characterReference instanceof EmpCharacterReference) {
             $characterReference = new EmpCharacterReference();

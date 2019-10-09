@@ -61,7 +61,7 @@ class PIMLeftMenuService {
             'label' => 'Job'),
         'viewWorkShiftList' => array(   
             'module' => 'pim',
-            'data_groups' => array('workshift_details', 'workshift_attachment', 'workshift_custom_fields'),
+            'data_groups' => array('workshift_details', 'workshift_attachments', 'workshift_custom_fields'),
             'label' => 'Work Shifts'),
         'viewSalaryList' => array(
             'module' => 'pim',

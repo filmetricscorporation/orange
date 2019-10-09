@@ -354,7 +354,7 @@ class EmployeeDao extends BaseDao {
      * @returns Collection/Skill
      * @throws DaoException
      */
-    public function getEmployeeCharacterReferences($empNumber) {
+    public function getEmployeeCharacterReferenceRecords($empNumber) {
         try {
             $q = Doctrine_Query::create()
                             ->from('EmployeeCharacterReference w')
@@ -369,7 +369,7 @@ class EmployeeDao extends BaseDao {
         // @codeCoverageIgnoreEnd
     }
 
-    /*public function getEmployeeCharacterReferences($empNumber, $characterReferenceCode = null) {
+    public function getEmployeeCharacterReferences($empNumber, $characterReferenceCode = null) {
         try {
             $q = Doctrine_Query::create()
                             ->from('EmployeeCharacterReference es')
@@ -388,13 +388,14 @@ class EmployeeDao extends BaseDao {
             throw new DaoException($e->getMessage(), $e->getCode(), $e);
         }
         // @codeCoverageIgnoreEnd
-    }*/
+    }
 
     /**
      * save Skill
      * @param EmployeeCharacterReference $empCharacterReference
      * @returns EmployeeCharacterReference
      */
+    //public function saveEmployeeCharacterReference(EmployeeCharacterReference $empCharacterReference) {
     public function saveEmployeeCharacterReference(EmployeeCharacterReference $empCharacterReference) {
         
         try {
@@ -418,7 +419,7 @@ class EmployeeDao extends BaseDao {
      * @returns integer
      * @throws DaoException
      */
-    public function deleteEmployeeCharacterReferences($empNumber, $entriesToDelete = null) {
+    public function deleteEmployeeCharacterReferenceRecords($empNumber, $entriesToDelete = null) {
         
         try {
             

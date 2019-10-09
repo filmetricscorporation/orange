@@ -26,11 +26,11 @@ class defineHolidayTypeAction extends baseHolidayAction {
                     $this->saveHolidayType($holidayType);
 
 
-                    $eventType = ( $this->form->getValue('hdnHolidayTypeId') > 0) ? HolidayEvents::LEAVE_TYPE_UPDATE : HolidayEvents::LEAVE_TYPE_ADD;
-                    $this->dispatcher->notify(new sfEvent($this, $eventType,
-                                    array('holidayType' => $holidayType)));
+                    //$eventType = ( $this->form->getValue('hdnHolidayTypeId') > 0) ? HolidayEvents::LEAVE_TYPE_UPDATE : HolidayEvents::LEAVE_TYPE_ADD;
+                    //$this->dispatcher->notify(new sfEvent($this, $eventType,
+                    //                array('holidayType' => $holidayType)));
 
-                    $this->redirect("holiday/holidayTypeList");
+                    $this->redirect("leave/holidayTypeList");
                 }
             }
         } else {            

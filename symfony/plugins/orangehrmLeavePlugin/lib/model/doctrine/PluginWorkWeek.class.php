@@ -21,6 +21,7 @@ abstract class PluginWorkWeek extends BaseWorkWeek
     private static $daysLengthList = array(0 => 'Full Day', 4 => 'Half Day', 8 => 'Non-working Day');
     private static $yesNoList = array(0 => 'No', 1 => 'Yes');
     private static $dayColumns = array(1 => 'mon', 2 => 'tue', 3 => 'wed', 4 => 'thu', 5 => 'fri', 6 => 'sat', 7 => 'sun');
+    private static $typeList = array(1 => 'Regular Holiday', 2 => 'Special Non-Working Holiday', 3 => 'Special Working Holiday');
 
     /**
      * Return Possible Days List
@@ -62,6 +63,10 @@ abstract class PluginWorkWeek extends BaseWorkWeek
      */
     public static function getYesNoList() {
         return self::$yesNoList;
+    }
+
+    public static function getTypeList() {
+        return self::$typeList;
     }
 
     /**

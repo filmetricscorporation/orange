@@ -9,7 +9,7 @@ include_slot('header', get_partial('global/header'));
     <body>
         <div id="wrapper">
             <div id="branding">
-                <a href="#"><img src="<?php echo theme_path('images/filmetrics_logo.png')?>" width="330" height="70" alt="Filmetrics HRIS"/></a>
+                <a href="#"><img src="<?php echo theme_path('images/header_logo.png')?>" width="230" height="80" alt="Filmetrics HRIS"/></a>
                 <!--<a href="http://www.orangehrm.com/user-survey-registration.php" class="subscribe" target="_blank"><?php echo __('Join OrangeHRM Community'); ?></a>-->
                 <a href="#" id="welcome" class="panelTrigger"><img alt="Employee Photo" style="margin-right:5px;margin-bottom:-5px;" src="<?php echo url_for("pim/viewPhoto?empNumber=". $sf_user->getAttribute('auth.empNumber')); ?>" border="0" id="empPic" width="40px;" height="40px;"/><?php echo __("Welcome %username%", array("%username%" => $sf_user->getAttribute('auth.firstName'))); ?></a>
                 <a href="<?php echo url_for('auth/logout'); ?>" id="logout" class="panelTrigger">| Logout</a>                

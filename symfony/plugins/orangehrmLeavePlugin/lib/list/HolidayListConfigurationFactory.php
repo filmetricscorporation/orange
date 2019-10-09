@@ -31,7 +31,7 @@ class HolidayListConfigurationFactory extends ohrmListConfigurationFactory {
 
         $header1->populateFromArray(array(
             'name' => 'Name',
-            'width' => '40%',
+            'width' => '30%',
             'isSortable' => false,
             'sortField' => null,
             'elementType' => 'link',
@@ -46,7 +46,7 @@ class HolidayListConfigurationFactory extends ohrmListConfigurationFactory {
 
         $header2->populateFromArray(array(
             'name' => 'Date',
-            'width' => '25%',
+            'width' => '15%',
             'isSortable' => false,
             'sortField' => null,
             'filters' => array('DateCellFilter' => array()),            
@@ -58,6 +58,23 @@ class HolidayListConfigurationFactory extends ohrmListConfigurationFactory {
         $header3 = new ListHeader();
 
         $header3->populateFromArray(array(
+            'name' => 'Type',
+            'width' => '20%',
+            'isSortable' => false,
+            'sortField' => null,
+            'filters' => array('EnumCellFilter' => array(
+                                                    'enum' => PluginWorkWeek::getTypeList(), 
+                                                    'default' => ''),
+                               'I18nCellFilter' => array()
+                              ),
+            'elementType' => 'label',
+            'textAlignmentStyle' => 'left',
+            'elementProperty' => array('getter' => 'getHolidayTypeId'),
+        ));
+
+        $header4 = new ListHeader();
+
+        $header4->populateFromArray(array(
             'name' => 'Full Day/Half Day',
             'width' => '20%',
             'isSortable' => false,
@@ -72,9 +89,9 @@ class HolidayListConfigurationFactory extends ohrmListConfigurationFactory {
             'elementProperty' => array('getter' => 'getLength'),
         ));
 
-        $header4 = new ListHeader();
+        $header5 = new ListHeader();
 
-        $header4->populateFromArray(array(
+        $header5->populateFromArray(array(
             'name' => 'Repeats Annually',
             'width' => '15%',
             'isSortable' => false,
@@ -89,7 +106,7 @@ class HolidayListConfigurationFactory extends ohrmListConfigurationFactory {
             'elementProperty' => array('getter' => 'getRecurring'),
         ));
         
-        $this->headers = array($header1, $header2, $header3, $header4);
+        $this->headers = array($header1, $header2, $header3, $header4, $header5);
     }
 
     public function getClassName() {

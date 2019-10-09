@@ -42,6 +42,8 @@
  * @property string $emp_oth_email
  * @property integer $termination_id
  * @property integer $approval_signatory
+ * @property integer $is_mobile
+ * @property integer $is_dco
  * @property integer $is_confidential
  * @property string $sss_number
  * @property string $philhealth_number
@@ -144,6 +146,8 @@
  * @method string                    getEmpOthEmail()                Returns the current record's "emp_oth_email" value
  * @method integer                   getTerminationId()              Returns the current record's "termination_id" value
  * @method integer                   getApprovalSignatory()          Returns the current record's "approval_signatory" value
+ * @method integer                   getIsMobile()          		 Returns the current record's "is_mobile" value
+ * @method integer                   getIsDco()          		     Returns the current record's "is_dco" value
  * @method integer                   getIsConfidential()    		 Returns the current record's "is_confidential" value
  * @method string                    getSssNumber()					 Returns the current record's "sss_number" value
  * @method string                    getPhilheathNumber()			 Returns the current record's "philihealth_number" value
@@ -245,6 +249,8 @@
  * @method Employee                  setEmpOthEmail()                Sets the current record's "emp_oth_email" value
  * @method Employee                  setTerminationId()              Sets the current record's "termination_id" value
  * @method Employee                  setApprovalSignatory()          Sets the current record's "approval_signatory" value
+ * @method Employee                  setisMobile()                   Sets the current record's "is_mobile" value
+ * @method Employee                  setisDco()                      Sets the current record's "is_dco" value
  * @method Employee                  setIsConfidential()             Sets the current record's "is_confidential" value
  * @method Employee                  setSssNumber()					 Sets the current record's "sss_number" value
  * @method Employee                  setPhilhealthNumber()			 Sets the current record's "philhealth_number" value
@@ -661,6 +667,14 @@ abstract class BaseEmployee extends sfDoctrineRecord
         $this->hasOne('ApprovalSignatory', array(
              'local' => 'approval_signatory',
              'foreign' => 'approval_signatory'));
+
+        $this->hasOne('IsMobile', array(
+             'local' => 'is_mobile',
+             'foreign' => 'is_mobile'));
+
+        $this->hasOne('IsDco', array(
+             'local' => 'is_dco',
+             'foreign' => 'is_dco'));
 
         $this->hasOne('SssNumber', array(
              'local' => 'sss_number',

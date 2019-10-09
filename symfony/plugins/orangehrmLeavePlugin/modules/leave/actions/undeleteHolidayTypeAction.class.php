@@ -38,7 +38,7 @@ class undeleteHolidayTypeAction extends orangehrmAction {
                 $this->getLoggerInstance()->error($this->form);
             }
         }
-        $this->redirect("holiday/holidayTypeList");        
+        $this->redirect("leave/holidayTypeList");        
     }
 
 

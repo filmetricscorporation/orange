@@ -431,9 +431,14 @@ class EmployeeService extends BaseService {
      * @todo rename method as getEmployeeCharacterReferences [DONE]
      * 
      */
-    public function getEmployeeCharacterReferences($empNumber, $characterReferenceCode = null) {
-       return $this->getEmployeeDao()->getEmployeeCharacterReferences($empNumber, $characterReferenceCode);
+    public function getEmployeeCharacterReferenceRecords($empNumber, $characterReferenceCode = null) {
+       return $this->getEmployeeDao()->getEmployeeCharacterReferenceRecords($empNumber, $characterReferenceCode);
     }
+
+     public function getEmployeeCharacterReferences($empNumber, $characterReference = null) {
+       return $this->getEmployeeDao()->getEmployeeCharacterReferences($empNumber, $characterReference);
+    }
+
 
     /**
      * Delete given skill entries for given employee
@@ -450,8 +455,8 @@ class EmployeeService extends BaseService {
      * @todo return number of entries deleted [DONE]
      * @todo rename method as deleteEmployeeCharacterReferences [DONE]
      */
-    public function deleteEmployeeCharacterReferences($empNumber, $entriesToDelete = null) {
-        return $this->getEmployeeDao()->deleteEmployeeCharacterReferences($empNumber, $entriesToDelete);
+    public function deleteEmployeeCharacterReferenceRecords($empNumber, $entriesToDelete = null) {
+        return $this->getEmployeeDao()->deleteEmployeeCharacterReferenceRecords($empNumber, $entriesToDelete);
     }
 
     /**

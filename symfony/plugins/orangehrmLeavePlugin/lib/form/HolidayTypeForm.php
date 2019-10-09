@@ -31,7 +31,7 @@ class HolidayTypeForm extends orangehrmForm {
 
         $widgets = array(
             'txtHolidayTypeName' => new sfWidgetFormInput(array(), array('size' => 30)),
-            'excludeIfNoEntitlement' => new sfWidgetFormInputCheckbox(array('value_attribute_value' => 1)),
+            //'excludeIfNoEntitlement' => new sfWidgetFormInputCheckbox(array('value_attribute_value' => 1)),
             'hdnOriginalHolidayTypeName' => new sfWidgetFormInputHidden(),
             'hdnHolidayTypeId' => new sfWidgetFormInputHidden()
         );
@@ -46,7 +46,7 @@ class HolidayTypeForm extends orangehrmForm {
                         'required' => __('Required'),
                         'max_length' => __('Leave type name should be 50 characters or less in length')
             )),
-            'excludeIfNoEntitlement' => new sfValidatorBoolean(),
+            //'excludeIfNoEntitlement' => new sfValidatorBoolean(),
             'hdnOriginalHolidayTypeName' => new sfValidatorString(array('required' => false)),
             'hdnHolidayTypeId' => new sfValidatorString(array('required' => false))
         );
@@ -75,7 +75,7 @@ class HolidayTypeForm extends orangehrmForm {
 
             $this->setDefault('hdnHolidayTypeId', $holidayTypeObject->getId());
             $this->setDefault('txtHolidayTypeName', $holidayTypeObject->getName());
-            $this->setDefault('excludeIfNoEntitlement', $holidayTypeObject->getExcludeInReportsIfNoEntitlement());
+            //$this->setDefault('excludeIfNoEntitlement', $holidayTypeObject->getExcludeInReportsIfNoEntitlement());
             $this->setDefault('hdnOriginalHolidayTypeName', $holidayTypeObject->getName());
         }
     }
@@ -100,7 +100,7 @@ class HolidayTypeForm extends orangehrmForm {
         }
 
         $holidayType->setName($this->getValue('txtHolidayTypeName'));
-        $holidayType->setExcludeInReportsIfNoEntitlement($this->getValue('excludeIfNoEntitlement'));
+        //$holidayType->setExcludeInReportsIfNoEntitlement($this->getValue('excludeIfNoEntitlement'));
 
         return $holidayType;
     }

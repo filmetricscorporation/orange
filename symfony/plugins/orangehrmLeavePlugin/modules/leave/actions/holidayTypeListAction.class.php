@@ -9,7 +9,6 @@ class holidayTypeListAction extends baseHolidayAction {
         $this->message = (isset($message[1])) ? $message[1] : "";
         
         $this->holidayTypePermissions = $this->getDataGroupPermissions('holiday_types');
-        //var_dump($this->getDataGroupPermissions('holiday_types'));
         if ($this->holidayTypePermissions->canRead()) {
             $this->_setListComponent($this->getHolidayTypeList(), $this->holidayTypePermissions);
         }
@@ -20,9 +19,6 @@ class holidayTypeListAction extends baseHolidayAction {
         $holidayTypeService = new HolidayTypeService();
         $holidayTypeDao = new HolidayTypeDao();
         $holidayTypeService->setHolidayTypeDao($holidayTypeDao);
-
-            
-        //var_dump($holidayTypeService);
 
         return $holidayTypeService->getHolidayTypeList();
     }
@@ -47,6 +43,7 @@ class holidayTypeListAction extends baseHolidayAction {
         $runtimeDefinitions['buttons'] = $buttons;
         
         $readOnlyHolidayTypeIds = $this->getUnselectableHolidayTypeIds();
+
         if (count($readOnlyHolidayTypeIds) > 0) {
             $runtimeDefinitions['unselectableRowIds'] = $readOnlyHolidayTypeIds;
         }
@@ -54,7 +51,7 @@ class holidayTypeListAction extends baseHolidayAction {
         $configurationFactory = $this->getListConfigurationFactory();
         
         $configurationFactory->setRuntimeDefinitions($runtimeDefinitions);
-        ohrmListComponent::setActivePlugin('orangehrmHolidayPlugin');
+        ohrmListComponent::setActivePlugin('orangehrmLeavePlugin');
         ohrmListComponent::setConfigurationFactory($configurationFactory);
         ohrmListComponent::setListData($holidayTypeList);
         ohrmListComponent::setPageNumber(0);

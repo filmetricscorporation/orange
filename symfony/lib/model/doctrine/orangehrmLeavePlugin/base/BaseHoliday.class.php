@@ -15,6 +15,7 @@
  * 
  * @method integer            getId()                     Returns the current record's "id" value
  * @method integer            getRecurring()              Returns the current record's "recurring" value
+ * @method integer            getHolidayTypeId()                   Returns the current record's "holiday type" value
  * @method string             getDescription()            Returns the current record's "description" value
  * @method date               getDate()                   Returns the current record's "date" value
  * @method integer            getLength()                 Returns the current record's "length" value
@@ -23,6 +24,7 @@
  * @method OperationalCountry getOperationalCountry()     Returns the current record's "OperationalCountry" value
  * @method Holiday            setId()                     Sets the current record's "id" value
  * @method Holiday            setRecurring()              Sets the current record's "recurring" value
+ * @method Holiday            setHolidayTypeId()          Sets the current record's "holiday type" value
  * @method Holiday            setDescription()            Sets the current record's "description" value
  * @method Holiday            setDate()                   Sets the current record's "date" value
  * @method Holiday            setLength()                 Sets the current record's "length" value

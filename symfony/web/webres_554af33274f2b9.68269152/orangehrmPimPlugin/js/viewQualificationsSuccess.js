@@ -74,7 +74,7 @@ $(document).ready(function() {
         $("#experience_comments").val("");
         $("#experience_superior").val("");
         $("#experience_address").val("");
-        $("#experience_salary").val("");
+        $("#experience_salary").val("0.00");
         $("#experience_contactno").val("");
 
         //show add work experience form
@@ -140,6 +140,9 @@ $(document).ready(function() {
             },
             'experience[comments]': {
                 maxlength: 200
+            },
+            'experience[superior]': {
+                maxlength: 100
             }
         },
         messages: {
@@ -159,6 +162,9 @@ $(document).ready(function() {
                 date_range: lang_fromDateLessToDate
             },
             'experience[comments]': {
+                maxlength: lang_commentLength
+            },
+            'experience[superior]': {
                 maxlength: lang_commentLength
             }
         }
@@ -229,6 +235,11 @@ $(document).ready(function() {
 
     $('#experience_salary').keyup(function(event) {
         this.value = this.value.replace(/[^0-9\.]/g,'');
+
+        if ($('#experience_salary').val() == "") {
+            $('#experience_salary').val("0.00");
+        }
+
     });
 
 });

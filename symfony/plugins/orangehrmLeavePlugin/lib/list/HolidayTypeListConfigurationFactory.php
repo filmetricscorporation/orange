@@ -36,7 +36,7 @@ class HolidayTypeListConfigurationFactory extends ohrmListConfigurationFactory {
             'elementProperty' => array(
                 'labelGetter' => 'getName',
                 'placeholderGetters' => array('id' => 'getId'),
-                'urlPattern' => 'index.php/holiday/defineHolidayType?id={id}'),
+                'urlPattern' => 'index.php/leave/defineHolidayType?id={id}'),
         ));
 
 

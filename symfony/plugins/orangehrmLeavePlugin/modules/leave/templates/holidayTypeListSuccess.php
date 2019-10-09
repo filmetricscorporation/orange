@@ -19,7 +19,7 @@
 ?>
 
 <?php
-use_javascript(plugin_web_path('orangehrmHolidayPlugin', 'js/holidayTypeListSuccess'));
+use_javascript(plugin_web_path('orangehrmLeavePlugin', 'js/holidayTypeListSuccess'));
 
 ?>
 
@@ -50,7 +50,7 @@ use_javascript(plugin_web_path('orangehrmHolidayPlugin', 'js/holidayTypeListSucc
 
 <script type="text/javascript">
     //<![CDATA[
-    var defineHolidayTypeUrl = '<?php echo url_for('holiday/defineHolidayType'); ?>';    
+    var defineHolidayTypeUrl = '<?php echo url_for('leave/defineHolidayType'); ?>';    
     var lang_SelectHolidayTypeToDelete = '<?php echo __(TopLevelMessages::SELECT_RECORDS); ?>';  
     //]]>
 </script>

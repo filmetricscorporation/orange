@@ -140,7 +140,7 @@ $imagePath = theme_path("images/login");
 </style>
 
 <div id="branding" style="margin-top:-35px;">
-    <a href="#"><img src="<?php echo theme_path('images/filmetrics_logo.png')?>" width="330" height="70" alt="Filmetrics HRIS"/></a>        
+    <a href="#"><img src="<?php echo theme_path('images/header_logo.png')?>" width="230" height="80" alt="HRIS"/></a>        
 </div>
 
 <div class="menu">
@@ -175,7 +175,7 @@ $imagePath = theme_path("images/login");
             ));
             ?>
             <!--a href="http://professional.demo.orangehrmlive.com/index.php/securityAuthentication/requestPasswordResetCode"> Forgot your password? </a-->
-            <a href="localhost:8080/orange_svn/symfony/web/index.php/admin/viewAdminModule"> Forgot your password? </a>
+            <!--a href="localhost:8080/orange_svn/symfony/web/index.php/admin/viewAdminModule"> Forgot your password? </a-->
         </div>
             
         <div id="divLoginButton">
